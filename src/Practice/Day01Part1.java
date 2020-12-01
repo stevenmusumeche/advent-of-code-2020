@@ -3,6 +3,7 @@ package Practice;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import util.InputLoader;
 
@@ -18,7 +19,7 @@ public class Day01Part1 {
   }
 
   public void go() throws FileNotFoundException {
-    ArrayList<String> input = loadInput();
+    List<String> input = loadInput();
     int totalFuel = 0;
     for (String line : input) {
       totalFuel += calculateRequiredFuel(Integer.parseInt(line));
@@ -31,7 +32,7 @@ public class Day01Part1 {
     return (mass / 3) - 2;
   }
 
-  private ArrayList<String> loadInput() throws FileNotFoundException {
+  private List<String> loadInput() throws FileNotFoundException {
     String path = Paths.get("").toAbsolutePath().toString();
     return InputLoader.load(path + "/src/Practice/input.txt");
   }
