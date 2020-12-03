@@ -14,8 +14,8 @@ public class InputLoader {
   public static List<String> load(String fileName) throws FileNotFoundException {
     ArrayList<String> data = new ArrayList<>();
     Scanner s = new Scanner(new File(fileName));
-    while (s.hasNext()) {
-      data.add(s.next());
+    while (s.hasNextLine()) {
+      data.add(s.nextLine());
     }
     s.close();
 
