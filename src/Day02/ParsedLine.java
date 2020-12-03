@@ -18,9 +18,12 @@ public class ParsedLine {
   }
 
   public boolean isValidPassword() {
-    long count = password.chars().filter(ch -> ch == rule.getLetter()).count();
+    char first = password.charAt(rule.getMin() - 1);
+    char last = password.charAt(rule.getMax() - 1);
+    boolean firstMatches = first == rule.getLetter();
+    boolean lastMatches = last == rule.getLetter();
 
-    if (count < rule.getMin() || count > rule.getMax()) {
+    if(firstMatches == lastMatches) {
       return false;
     }
 
