@@ -1,17 +1,10 @@
 package Day03;
 
-import java.io.FileNotFoundException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import util.InputLoader;
 
-public class Part1 {
-
-  List<List<String>> grid;
+public class Part1 extends Base {
 
   public static void main(String[] args) {
     try {
@@ -42,28 +35,7 @@ public class Part1 {
         numTrees++;
       }
     }
-    
+
     return numTrees;
-  }
-
-  private boolean isTree(int row, int col) {
-    return grid.get(row).get(col).equals("#");
-  }
-
-  private List<List<String>> buildGrid(List<String> lines) {
-    List<List<String>> grid = new ArrayList<>();
-    for (String line : lines) {
-      grid.add(Arrays.asList(line.split("")));
-    }
-    return grid;
-  }
-
-  private void printGrid(List<List<String>> grid) {
-    for (List<String> row : grid) {
-      for (String col : row) {
-        System.out.print(col);
-      }
-      System.out.print("\n");
-    }
   }
 }
