@@ -2,6 +2,7 @@ package util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,4 +22,22 @@ public class InputLoader {
 
     return data;
   }
+
+  public static List<String> loadForPackage(String packageName) {
+    try {
+      String path = Paths.get("").toAbsolutePath().toString();
+      String fileName = path + "/src/" + packageName + "/input.txt";
+      ArrayList<String> data = new ArrayList<>();
+      Scanner s = new Scanner(new File(fileName));
+      while (s.hasNextLine()) {
+        data.add(s.nextLine());
+      }
+      s.close();
+
+      return data;
+    } catch (FileNotFoundException e) {
+      return new ArrayList<>();
+    }
+  }
+
 }
