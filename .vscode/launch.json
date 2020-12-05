@@ -13,9 +13,9 @@
     },
     {
       "type": "java",
-      "name": "Day 4 Part 2",
+      "name": "Day 5 Part 1",
       "request": "launch",
-      "mainClass": "Day04.Part2",
+      "mainClass": "Day05.Part1",
       "projectName": "advent-of-code-2020_a9742f70"
     }
   ]
