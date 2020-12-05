@@ -2,10 +2,10 @@ package Day04;
 
 import java.util.List;
 
-public class Part1 extends Base {
+public class Part2 extends Base {
   public static void main(String[] args) {
     try {
-      Part1 program = new Part1();
+      Part2 program = new Part2();
       int answer = program.run();
       System.out.printf("Answer %d%n", answer);
     } catch (Exception e) {
