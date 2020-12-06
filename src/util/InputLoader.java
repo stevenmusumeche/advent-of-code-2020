@@ -2,6 +2,9 @@ package util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,16 @@ public class InputLoader {
       return data;
     } catch (FileNotFoundException e) {
       return new ArrayList<>();
+    }
+  }
+
+  public static String loadAsString(String packageName) {
+    try {
+      String path = Paths.get("").toAbsolutePath().toString();
+      String fileName = path + "/src/" + packageName + "/input.txt";
+      return Files.readString(Paths.get(fileName));
+    } catch (IOException e) {
+      return "";
     }
   }
 
