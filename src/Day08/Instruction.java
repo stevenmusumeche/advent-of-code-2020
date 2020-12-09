@@ -9,9 +9,13 @@ public class Instruction {
     final private int argument;
     private boolean executed = false;
 
-    private Instruction(String operation, int argument) {
+    public Instruction(String operation, int argument) {
         this.operation = operation;
         this.argument = argument;
+    }
+
+    public Instruction clone() {
+        return new Instruction(this.getOperation(), this.getArgument());
     }
 
     public static Instruction create(String instruction) {
