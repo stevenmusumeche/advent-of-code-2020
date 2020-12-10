@@ -16,6 +16,20 @@ public class Base {
         return InputLoader.loadForPackage("Day09").stream().map(Long::parseUnsignedLong).collect(Collectors.toList());
     }
 
+    protected long findRuleBreaker() {
+        int i = PREAMBLE_LIMIT;
+        while (i < input.size() - 1) {
+            long cur = input.get(i);
+            if (!isValid(cur)) {
+                return cur;
+            }
+            updatePreamble(i);
+            i++;
+        }
+
+        return -1;
+    }
+
     protected void updatePreamble(int i) {
         // remove furthest back
         long toBeRemoved = input.get(i - PREAMBLE_LIMIT);

@@ -10,16 +10,6 @@ public class Part1 extends Base {
     private long run() {
         input = loadInput();
         buildPreamble();
-        int i = PREAMBLE_LIMIT;
-        while (i < input.size() - 1) {
-            long cur = input.get(i);
-            if (!isValid(cur)) {
-                return cur;
-            }
-            updatePreamble(i);
-            i++;
-        }
-
-        return -1;
+        return findRuleBreaker();
     }
 }
