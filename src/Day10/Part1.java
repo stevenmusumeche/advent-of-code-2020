@@ -9,10 +9,10 @@ public class Part1 extends Base {
 
     int run() {
         loadInput();
-        int cur = 0;
+        long cur = 0;
         while(adapters.size() > 0) {
             for(int diff = 1; diff <= 3 ; diff++) {
-                int attempt = cur + diff;
+                long attempt = cur + diff;
                 if (adapters.contains(attempt)) {
                     cur = attempt;
                     diffCount.put(diff, diffCount.getOrDefault(diff, 0) + 1);
