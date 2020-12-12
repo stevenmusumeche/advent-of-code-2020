@@ -5,17 +5,10 @@ import util.InputLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static Day11.Position.*;
 
 public class Part1 extends Base {
-    Position[][] grid;
-    Position[][] prevGrid;
-    int numRows;
-    int numCols;
-
     public static void main(String[] args) {
         Part1 program = new Part1();
         int answer = program.run();
@@ -32,6 +25,7 @@ public class Part1 extends Base {
         while (true) {
             boolean changed = shuffle();
             if (!changed) {
+                // answer found
                 long numOccupied = Arrays.stream(grid)
                         .mapToLong(row -> Arrays.stream(row)
                                 .filter(col -> col.equals(OCCUPIED))
@@ -44,21 +38,6 @@ public class Part1 extends Base {
         }
     }
 
-    protected boolean shuffle() {
-        boolean changed = false;
-        for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numCols; col++) {
-                Position curPosition = prevGrid[row][col];
-                Position nextPosition = getNextPosition(row, col);
-                if (!nextPosition.equals(curPosition)) {
-                    changed = true;
-                    grid[row][col] = nextPosition;
-                }
-            }
-        }
-
-        return changed;
-    }
 
     protected List<Position> getAdjacent(int row, int col) {
         List<Position> adj = new ArrayList<>();
@@ -95,32 +74,4 @@ public class Part1 extends Base {
         }
     }
 
-    protected void buildGrid(List<String> lines) {
-        numRows = lines.size();
-        numCols = lines.get(0).length();
-
-        grid = new Position[numRows][numCols];
-
-        int row = 0;
-        for (String line : lines) {
-            grid[row++] = Arrays.stream(line.split("")).map(Position::fromValue).toArray(Position[]::new);
-        }
-    }
-
-    protected void printGrid(Position[][] grid) {
-        for (Position[] row : grid) {
-            for (Position col : row) {
-                System.out.print(col.value);
-            }
-            System.out.print("\n");
-        }
-    }
-
-    protected Position[][] deepCopyGrid(Position[][] originalGrid) {
-        Position[][] result = new Position[numRows][numCols];
-        for (int r = 0; r < numRows; r++) {
-            result[r] = originalGrid[r].clone();
-        }
-        return result;
-    }
 }
