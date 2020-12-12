@@ -10,7 +10,7 @@ public class Part1 extends Base {
   private int run() {
     loadCommands();
     executeManeuvers();
-    return Math.abs(ship.eastWest) + Math.abs(ship.northSouth);
+    return ship.getManhattanDistance();
   }
 
   private void executeManeuvers() {
