@@ -10,9 +10,10 @@ abstract class Base {
     Map<Integer, Character> bitmask = new HashMap<>();
     String maskRegex = "^mask = (?<mask>[X10]+)$";
     Pattern maskPattern = Pattern.compile(maskRegex);
-    Map<Integer, Long> memory = new HashMap<>();
+    Map<Long, Long> memory = new HashMap<>();
 
     abstract void processInstruction(String line);
+    abstract void buildMaskMapping(String mask);
 
     protected long calculateAnswer() {
         return memory.values().stream().mapToLong(x -> x).sum();
@@ -23,20 +24,6 @@ abstract class Base {
         if (!m.matches()) throw new RuntimeException("invariant");
         String mask = m.group("mask");
         buildMaskMapping(mask);
-    }
-
-    protected void buildMaskMapping(String mask) {
-        // reset
-        bitmask = new HashMap<>();
-
-        char[] characters = {'0', '1'};
-        for (char character : characters) {
-            int index = mask.indexOf(character);
-            while (index >= 0) {
-                bitmask.put(index, character);
-                index = mask.indexOf(character, index + 1);
-            }
-        }
     }
 
     protected boolean isMask(String line) {

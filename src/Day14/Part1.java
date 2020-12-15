@@ -2,7 +2,9 @@ package Day14;
 
 import util.InputLoader;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Part1 extends Base {
   public static void main(String[] args) {
@@ -31,6 +33,19 @@ public class Part1 extends Base {
     String valueBinary = padLeft(Integer.toBinaryString(instruction.getValue()));
     StringBuilder replaced = new StringBuilder(valueBinary);
     bitmask.forEach(replaced::setCharAt);
-    memory.put(instruction.getMemoryAddress(), Long.parseLong(String.valueOf(replaced), 2));
+    memory.put((long) instruction.getMemoryAddress(), Long.parseLong(String.valueOf(replaced), 2));
+  }
+
+  protected void buildMaskMapping(String mask) {
+    // reset
+    bitmask = new HashMap<>();
+    char[] characters = {'0', '1'};
+    for (char character : characters) {
+      int index = mask.indexOf(character);
+      while (index >= 0) {
+        bitmask.put(index, character);
+        index = mask.indexOf(character, index + 1);
+      }
+    }
   }
 }
