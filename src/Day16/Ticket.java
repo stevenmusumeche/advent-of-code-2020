@@ -18,4 +18,8 @@ public class Ticket {
         .filter(value -> rules.stream().noneMatch(rule -> rule.isValid(value)))
         .collect(Collectors.toList());
   }
+
+  public List<Integer> getValues() {
+    return values;
+  }
 }
