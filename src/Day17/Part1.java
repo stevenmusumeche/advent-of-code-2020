@@ -1,7 +1,5 @@
 package Day17;
 
-import util.InputLoader;
-
 import java.util.*;
 import java.util.function.Consumer;
 
